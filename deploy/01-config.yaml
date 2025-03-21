@@ -12,6 +12,15 @@ data:
       routes:
         - match:
             - receiver: "dump"
+              reason: "ISFEventManager"
+        - match:
+            - receiver: "alert"
+              reason: "ISFEventManager"
     receivers:
       - name: "dump"
         stdout: {}
+      - name: "alert"
+        webhook:
+          endpoint: "https://hooks.slack.com/services/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"
+          layout:
+            text: "{{.Message}}"
